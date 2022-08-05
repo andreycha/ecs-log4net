@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elastic.CommonSchema.log4net", "src\Elastic.CommonSchema.log4net\Elastic.CommonSchema.log4net.csproj", "{A496BFD8-A47E-40BC-8AE8-725F1A26AD8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elastic.CommonSchema.log4net.Tests", "tests\Elastic.CommonSchema.log4net.Tests\Elastic.CommonSchema.log4net.Tests.csproj", "{D66291D2-7B54-449B-90A3-84F86D321986}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7DDFFFAB-A93C-496F-89E7-8838FC32FC6A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elastic.CommonSchema.log4net.Example", "example\Elastic.CommonSchema.log4net.Example\Elastic.CommonSchema.log4net.Example.csproj", "{25B76DC9-97A1-4DC3-8B97-7FEB6941C225}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A496BFD8-A47E-40BC-8AE8-725F1A26AD8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A496BFD8-A47E-40BC-8AE8-725F1A26AD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A496BFD8-A47E-40BC-8AE8-725F1A26AD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A496BFD8-A47E-40BC-8AE8-725F1A26AD8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D66291D2-7B54-449B-90A3-84F86D321986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D66291D2-7B54-449B-90A3-84F86D321986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D66291D2-7B54-449B-90A3-84F86D321986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D66291D2-7B54-449B-90A3-84F86D321986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25B76DC9-97A1-4DC3-8B97-7FEB6941C225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25B76DC9-97A1-4DC3-8B97-7FEB6941C225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25B76DC9-97A1-4DC3-8B97-7FEB6941C225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25B76DC9-97A1-4DC3-8B97-7FEB6941C225}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF1D8325-B20A-475F-A35C-CA1E36242099}
+	EndGlobalSection
+EndGlobal
