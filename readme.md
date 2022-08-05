@@ -24,15 +24,15 @@ See [sample application](example/Elastic.CommonSchema.log4net.Example/) for refe
 
 Apart from [mandatory fields](https://www.elastic.co/guide/en/ecs/current/ecs-guidelines.html#_general_guidelines), the output contains additional data:
 
-`log.origin.file.name` -- taken from `LocationInformation`
-`log.origin.file.line` -- taken from `LocationInformation`
-`log.origin.function` -- taken from `LocationInformation`
-`host.hostname` -- taken from `HostName` property
-`process.thread.id` -- taken from `ThreadName` if it has numeric value
-`process.thread.name` -- taken from `ThreadName` if it doesn't have numeric value
-`service.name` -- taken from entry or calling assembly
-`service.version` -- taken from entry or calling assembly
-`metadata` -- taken from properties
+- `log.origin.file.name` is taken from `LocationInformation`
+- `log.origin.file.line` is taken from `LocationInformation`
+- `log.origin.function` is taken from `LocationInformation`
+- `host.hostname` is taken from `HostName` property
+- `process.thread.id` is taken from `ThreadName` if it has numeric value
+- `process.thread.name` is taken from `ThreadName` if it doesn't have numeric value
+- `service.name` is taken from entry or calling assembly
+- `service.version` is taken from entry or calling assembly
+- `metadata` is taken from properties
 
 Sample log event output (formatted for readability):
 
