@@ -1,5 +1,7 @@
 # Elastic.CommonSchema.log4net
 
+![build](https://github.com/andreycha/ecs-log4net/actions/workflows/ci.yml/badge.svg?branch=main)
+
 log4net layout to format log events into a JSON representation that adheres to Elastic Common Schema specification.
 
 ## How to use
