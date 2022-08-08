@@ -1,13 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
-	<PackageId>Elastic.CommonSchema.log4net</PackageId>
+    <PackageId>Elastic.CommonSchema.log4net</PackageId>
     <PackageDescription>log4net layout to format log events into a JSON representation that adheres to Elastic Common Schema specification</PackageDescription>
-	<RepositoryType>git</RepositoryType>
+    <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/andreycha/ecs-log4net</RepositoryUrl>
   </PropertyGroup>
 
