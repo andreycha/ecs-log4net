@@ -1,6 +1,7 @@
-using System.Reflection;
 using log4net.Core;
 using log4net.Util;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Elastic.CommonSchema.log4net;
 
@@ -72,13 +73,48 @@ internal static class LoggingEventConverter
         {
             Message = exception.Message,
             Type = exception.GetType().FullName,
-            StackTrace = exception.StackTrace
-            // TODO:
-            // - handle inner exception
-            // - handle AggregateException
+            StackTrace = GetStackTrace(exception)
         };
     }
-    
+
+    private static string? GetStackTrace(Exception exception)
+    {
+        var i = 1;
+        var fullText = new StringWriter();
+        var frame = new StackTrace(exception, true).GetFrame(0);
+
+        fullText.WriteLine($"Exception {i++:D2} ===================================");
+        fullText.WriteLine($"Type: {exception.GetType()}");
+        fullText.WriteLine($"Source: {exception.TargetSite?.DeclaringType?.AssemblyQualifiedName}");
+        fullText.WriteLine($"Message: {exception.Message}");
+        fullText.WriteLine($"Trace: {exception.StackTrace}");
+        if (frame != null)
+        {
+            fullText.WriteLine($"Location: {frame.GetFileName()}");
+            fullText.WriteLine($"Method: {frame.GetMethod()} ({frame.GetFileLineNumber()}, {frame.GetFileColumnNumber()})");
+        }
+
+        var innerException = exception.InnerException;
+        while (innerException != null)
+        {
+            frame = new StackTrace(innerException, true).GetFrame(0);
+            fullText.WriteLine($"\tException {i++:D2} inner --------------------------");
+            fullText.WriteLine($"\tType: {innerException.GetType()}");
+            fullText.WriteLine($"\tSource: {innerException.TargetSite?.DeclaringType?.AssemblyQualifiedName}");
+            fullText.WriteLine($"\tMessage: {innerException.Message}");
+            fullText.WriteLine($"\tTrace: {innerException.StackTrace}");
+            if (frame != null)
+            {
+                fullText.WriteLine($"\tLocation: {frame.GetFileName()}");
+                fullText.WriteLine($"\tMethod: {frame.GetMethod()} ({frame.GetFileLineNumber()}, {frame.GetFileColumnNumber()})");
+            }
+
+            innerException = innerException.InnerException;
+        }
+
+        return fullText.ToString();
+    }
+
     private static Service GetService() =>
         new()
         {

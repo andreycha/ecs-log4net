@@ -105,15 +105,34 @@ public class LoggingEventConverterTests
     [Fact]
     public void ToEcs_EventWithException_PopulatesErrorField()
     {
-        var exception = new InvalidOperationException("Oops");
-        var loggingEvent = CreateLoggingEvent(exception);
+        var innerException = new ArgumentException("Wrong argument");
+        try
+        {
+            try
+            {
+                throw innerException;
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException("Oops", e);
+            }
+        }
+        catch (Exception e)
+        {
+            var loggingEvent = CreateLoggingEvent(e);
 
-        var ecsEvent = loggingEvent.ToEcs();
+            var ecsEvent = loggingEvent.ToEcs();
 
-        ecsEvent.Error.Should().NotBeNull();
-        ecsEvent.Error.Message.Should().Be(exception.Message);
-        ecsEvent.Error.Type.Should().Be(exception.GetType().FullName);
-        ecsEvent.Error.StackTrace.Should().Be(exception.StackTrace);
+            ecsEvent.Error.Should().NotBeNull();
+            ecsEvent.Error.Message.Should().Be(e.Message);
+            ecsEvent.Error.Type.Should().Be(e.GetType().FullName);
+
+            ecsEvent.Error.StackTrace.Should().Contain(e.Message);
+            ecsEvent.Error.StackTrace.Should().Contain(e.StackTrace);
+
+            ecsEvent.Error.StackTrace.Should().Contain(innerException.Message);
+            ecsEvent.Error.StackTrace.Should().Contain(innerException.StackTrace);
+        }
     }
 
     [Fact]
