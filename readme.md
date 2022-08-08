@@ -29,11 +29,16 @@ Apart from [mandatory fields](https://www.elastic.co/guide/en/ecs/current/ecs-gu
 - `log.origin.file.name` is taken from `LocationInformation`
 - `log.origin.file.line` is taken from `LocationInformation`
 - `log.origin.function` is taken from `LocationInformation`
+- `event.created` is taken from timestamp
+- `event.timezone` is equal to local timezone
 - `host.hostname` is taken from `HostName` property
 - `process.thread.id` is taken from `ThreadName` if it has numeric value
 - `process.thread.name` is taken from `ThreadName` if it doesn't have numeric value
 - `service.name` is taken from entry or calling assembly
 - `service.version` is taken from entry or calling assembly
+- `error.message` is taken from `ExceptionObject`
+- `error.type` is taken from `ExceptionObject`
+- `error.stacktrace` is taken from `ExceptionObject`
 - `metadata` is taken from properties
 
 Sample log event output (formatted for readability):
