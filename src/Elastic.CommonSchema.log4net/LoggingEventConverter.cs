@@ -1,7 +1,7 @@
-using log4net.Core;
-using log4net.Util;
 using System.Diagnostics;
 using System.Reflection;
+using log4net.Core;
+using log4net.Util;
 
 namespace Elastic.CommonSchema.log4net;
 

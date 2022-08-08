@@ -1,6 +1,6 @@
+using FluentAssertions;
 using log4net;
 using log4net.Core;
-using FluentAssertions;
 using log4net.Repository.Hierarchy;
 
 namespace Elastic.CommonSchema.log4net.Tests;
