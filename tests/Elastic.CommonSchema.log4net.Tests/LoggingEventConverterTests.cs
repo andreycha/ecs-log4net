@@ -142,9 +142,12 @@ public class LoggingEventConverterTests
 
         var ecsEvent = loggingEvent.ToEcs();
 
-        ecsEvent.Metadata.Should().NotContainKey(LoggingEvent.IdentityProperty);
-        ecsEvent.Metadata.Should().NotContainKey(LoggingEvent.HostNameProperty);
-        ecsEvent.Metadata.Should().NotContainKey(LoggingEvent.UserNameProperty);
+        if (ecsEvent.Metadata != null)
+        {
+            ecsEvent.Metadata.Should().NotContainKey(LoggingEvent.IdentityProperty);
+            ecsEvent.Metadata.Should().NotContainKey(LoggingEvent.HostNameProperty);
+            ecsEvent.Metadata.Should().NotContainKey(LoggingEvent.UserNameProperty);
+        }
     }
 
     [Fact]
