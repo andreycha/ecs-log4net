@@ -24,7 +24,9 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
-      run: dotnet build
+      run: dotnet build --no-restore
     - name: Run tests
       run: dotnet test --no-build --no-restore tests/Elastic.CommonSchema.log4net.Tests/Elastic.CommonSchema.log4net.Tests.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov /p:CollectCoverage=true /p:Threshold=80
