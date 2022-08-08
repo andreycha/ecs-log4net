@@ -1,0 +1,37 @@
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  MINVERBUILDMETADATA: build.${{github.run_number}}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x' ]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Set version
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+    - name: Build
+      run: dotnet build --configuration Release /p:Version=${VERSION}
+    - name: Run tests
+      run: dotnet test --no-build --no-restore tests/Elastic.CommonSchema.log4net.Tests/Elastic.CommonSchema.log4net.Tests.csproj --configuration Release /p:Version=${VERSION}
+    - name: Create package
+      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+    - name: Publish to Github Packages
+      run: dotnet nuget push *.nupkg --source https://nuget.pkg.github.com/andreycha/index.json --api-key ${GITHUB_TOKEN}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Publish to Nuget.org
+      run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_API_KEY} --skip-duplicate
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
