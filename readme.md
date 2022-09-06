@@ -1,3 +1,5 @@
+# NOTICE: this repository is now part of the [ECS .NET integration repository](https://github.com/elastic/ecs-dotnet/tree/main/src/Elastic.CommonSchema.Log4net)
+
 # Elastic.CommonSchema.log4net
 
 ![build](https://github.com/andreycha/ecs-log4net/actions/workflows/ci.yml/badge.svg?branch=main)
